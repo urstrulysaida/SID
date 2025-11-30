@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaik Saida Vali - Cyber Portfolio</title>
+    <meta name="description" content="Portfolio of Shaik Saida Vali - Cybersecurity & Cloud Engineer">
+    
+    <!-- Fonts: Space Grotesk (sans) and JetBrains Mono (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind configuration
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Space Grotesk"', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+            },
+            colors: {
+              accent: '#00E599', // Cyber Green
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            }
+          },
+        },
+      }
+    </script>
+
+    <!-- Global Styles for background and scrollbar -->
+    <style>
+      :root {
+        --color-accent: #00E599;
+      }
+
+      body {
+        background-color: #050505;
+        background-image:
+          linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+          linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+        background-size: 40px 40px;
+        /* Mask the grid so it fades out at edges */
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+        font-family: 'Space Grotesk', sans-serif;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-accent);
+      }
+
+      .shadow-accent-glow {
+        box-shadow: 0 0 15px rgba(0, 229, 153, 0.2);
+      }
+    </style>
+</head>
+<body class="text-white">
+
+    <div id="app-container" class="min-h-screen pb-24 md:pb-12 font-sans">
+        
+        <!-- --- HEADER SECTION --- -->
+        <div class="w-full max-w-5xl mx-auto pt-12 pb-8 px-6 text-center">
+          <div class="inline-flex items-center space-x-2 bg-accent/10 text-accent px-3 py-1 rounded-full text-xs font-mono mb-6 border border-accent/20">
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            <span>AVAILABLE FOR WORK</span>
+          </div>
+          <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-4 text-white">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">
+              Shaik Saida Vali
+            </span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-light">
+            Cybersecurity Engineer & Cloud Architect
+          </p>
+          
+          <!-- Global Search Input -->
+          <div class="max-w-md mx-auto mt-8 relative group">
+            <div class="absolute inset-0 bg-accent/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            <div class="relative flex items-center bg-[#121212] border border-white/10 rounded-full px-4 py-3 focus-within:border-accent/50 transition-colors">
+              <span class="text-gray-500 mr-3"><!-- Search Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </span>
+              <input 
+                id="search-input"
+                type="text"
+                placeholder="Search portfolio..." 
+                class="bg-transparent border-none outline-none text-white placeholder-gray-600 w-full font-mono text-sm"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- --- MAIN CONTENT AREA --- -->
+        <div class="w-full max-w-6xl mx-auto px-4">
+            <div id="content-area" class="transition-all duration-300 ease-out opacity-100 translate-y-0">
+                <!-- Content will be rendered here by JavaScript -->
+            </div>
+        </div>
+
+        <!-- --- FLOATING DOCK NAVIGATION --- -->
+        <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+          <div id="nav-dock" class="flex items-center space-x-2 bg-[#1a1a1a]/80 backdrop-blur-xl border border-white/10 p-2 rounded-2xl shadow-2xl">
+            <!-- Navigation buttons will be rendered here by JavaScript -->
+          </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- DATA (Converted from constants.ts) ---
+        const PROFILE_DATA = {
+            personal: {
+                summary: "A dedicated Computer Science student specializing in Cybersecurity, Cloud Architecture (GCP/AWS), and DevOps practices. Driven by a passion for building secure, scalable infrastructure, I leverage skills in Python, network security, and SIEM analysis to contribute to robust defense strategies and efficient cloud deployments.",
+                email: "urstrulysaida@gmail.com",
+                contact: "7674012184",
+                whatsapp: "6301466654",
+                dob: "2001-01-11",
+                gender: "Male",
+                category: "GEN",
+                disability: "No",
+                address: "10-11, avulavaripalem, Guntur Andhra Pradesh India, 522411",
+                city: "Andhra Pradesh",
+                state: "Andhra Pradesh"
+            },
+            education: [
+                {
+                    id: "10th",
+                    title: "10th Details",
+                    bgImage: "https://i.ytimg.com/vi/sU7KHbJxr0s/maxresdefault.jpg",
+                    details: [
+                        { label: "School", value: "ZPHS SCHOOL" },
+                        { label: "Marks", value: "7%" },
+                        { label: "Passout", value: "N/A" },
+                        { label: "Certificate", value: "View Certificate", isLink: true, linkUrl: "https://drive.google.com/file/d/15OPbt8X_FkjVENA-_ByxJ-6acZrH4yVG/view?usp=sharing" }
+                    ]
+                },
+                {
+                    id: "12th",
+                    title: "Intermediate (12th) Details",
+                    bgImage: "https://i.ytimg.com/vi/sU7KHbJxr0s/maxresdefault.jpg",
+                    details: [
+                        { label: "Institute", value: "N/A" },
+                        { label: "Percentage", value: "6%" },
+                        { label: "Passout", value: "N/A" },
+                        { label: "Certificate", value: "View Certificate", isLink: true, linkUrl: "https://drive.google.com/file/d/15LNA5es18GqDRMX1Fg7wYfzcYBWXo5Vk/view?usp=sharing" }
+                    ]
+                },
+                {
+                    id: "ug",
+                    title: "UG Details (Cyber Security)",
+                    bgImage: "https://image-static.collegedunia.com/public/reviewPhotos/951801/inbound2892504353987376923.jpg",
+                    details: [
+                        { label: "Institute", value: "Kakinada Institute of Engineering and Technology" },
+                        { label: "Course", value: "B.Tech" },
+                        { label: "Branch", value: "Cyber Security" },
+                        { label: "State", value: "Andhra Pradesh" },
+                        { label: "Univ. Reg No", value: "22B21A4627" },
+                        { label: "Passout", value: "2026" }
+                    ]
+                }
+            ],
+            career: {
+                currentRole: [
+                    { label: "Role", value: "N/A" },
+                    { label: "Company", value: "N/A" },
+                    { label: "Location", value: "Andhra Pradesh" }
+                ],
+                links: [
+                    { label: "LinkedIn", url: "https://www.linkedin.com/in/shaiksaidavali/", iconColorClass: "text-blue-700", linkText: "View Profile" },
+                    { label: "GitHub", url: "https://github.com/urstrulysaida", iconColorClass: "text-gray-700 dark:text-gray-300", linkText: "View Profile" },
+                    { label: "Codepen", url: "https://codepen.io/Mr_-Prince_Ssv", iconColorClass: "text-yellow-600", linkText: "View Codepen" }
+                ],
+                certifications: [
+                    {
+                        id: "cert1",
+                        title: "Google Cybersecurity Cert.",
+                        type: "Professional Certification",
+                        focus: "SIEM Analysis, Threat Detection, Risk Management (NIST/MITRE).",
+                        skills: "Enterprise Defense Strategies, Vulnerability Assessment, Security Operations Center (SOC) Fundamentals.",
+                        linkUrl: "https://drive.google.com/drive/folders/1GQHLGxvDy1Q0kK9evMfOjfEfOn2-fI5A?usp=sharing",
+                        colorClass: "text-green-500"
+                    },
+                    {
+                        id: "cert2",
+                        title: "AWS Cloud Technology",
+                        type: "Industry Training Program",
+                        focus: "Cloud Migration, Solution Design, Core AWS Services (EC2, S3, VPC).",
+                        skills: "Architecture Principles, Scalability, Cost Optimization, Infrastructure Fundamentals.",
+                        linkUrl: "https://drive.google.com/file/d/1QVr7fmnA-DpbHwySLg4d1lC8sA1RaURP/view?usp=drive_link",
+                        colorClass: "text-yellow-500"
+                    },
+                    {
+                        id: "cert3",
+                        title: "Advanced Data Analytics",
+                        type: "Professional Certification",
+                        focus: "Predictive Modeling, Statistical Analysis (R), Complex SQL Queries.",
+                        skills: "Data Visualization, Business Intelligence, Advanced Data Manipulation.",
+                        linkUrl: "https://drive.google.com/drive/folders/19PpE3C9AG5eBUGssrH_IAGa7RQlTHzUp?usp=drive_link",
+                        colorClass: "text-purple-500"
+                    }
+                ],
+                internships: [
+                    {
+                        id: "int1",
+                        title: "Zscaler Cloud Networking",
+                        type: "Virtual Internship",
+                        focus: "Zero Trust Architecture (ZTA), Secure Access Service Edge (SASE).",
+                        skills: "Modern Network Security, Cloud-First Environment Protection, Access Policy Management.",
+                        linkUrl: "https://drive.google.com/file/d/1AmbBgEeqkv45qOzodPugsVUiaunObl2U/view?usp=drive_link",
+                        colorClass: "text-indigo-500"
+                    },
+                    {
+                        id: "int2",
+                        title: "Fortinet Network Security",
+                        type: "Associate (NSE)",
+                        focus: "Next-Generation Firewalls, Cybersecurity Threat Landscape.",
+                        skills: "Network Segmentation, Security Fabric Concepts, Wired/Wireless Network Security.",
+                        linkUrl: "https://drive.google.com/file/d/1bGLpt7pwHiEaG9pvlNZnMlv7S35I3q5I/view?usp=drive_link",
+                        colorClass: "text-red-500"
+                    },
+                    {
+                        id: "int3",
+                        title: "Cloud Computing Internship",
+                        type: "8 Weeks Experience",
+                        focus: "GCP Services (Compute, Storage, VPC), Infrastructure-as-Code (IaC) concepts.",
+                        skills: "Practical Deployment, Cloud Security & Cost Management, Networking setup in a cloud environment.",
+                        linkUrl: "https://drive.google.com/file/d/1xbeF-RusGvEKylOF6wELgnYVunS5x8RO/view?usp=drive_link",
+                        colorClass: "text-blue-500"
+                    },
+                    {
+                        id: "int4",
+                        title: "IoT Internship",
+                        type: "16 Weeks Experience",
+                        focus: "Device Prototyping (Arduino/ESP), Sensor Integration, Data Transmission (MQTT).",
+                        skills: "Full-Stack IoT Deployment, Hardware-Software Interfacing, Cloud Connectivity Protocols.",
+                        linkUrl: "https://drive.google.com/file/d/1d1Rgjnw9mvVhVQJCXOZSz5bQRpthl33-/view?usp=drive_link",
+                        colorClass: "text-pink-500"
+                    },
+                    {
+                        id: "int5",
+                        title: "Ethical Hacking Internship",
+                        type: "10 Weeks Experience",
+                        focus: "Vulnerability Assessment, Penetration Testing Methodologies.",
+                        skills: "Network and Web App Security Testing, Foundational Defense Strategies.",
+                        linkUrl: "https://drive.google.com/file/d/1LkavkbMS0g6BfP-QAjf9C9QE_IsrGSVv/view?usp=drive_link",
+                        colorClass: "text-indigo-500"
+                    }
+                ]
+            }
+        };
+
+        // --- ICON SVGs (for Lucide replacement) ---
+        const ICONS = {
+            User: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+            GraduationCap: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-graduation-cap"><path d="M21.42 10.96V10a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 2 10v.96"/><path d="m7.5 12.35-3.32 1.9a1 1 0 0 0-.17 1.48l3.41 5.46a2 2 0 0 0 1.62.91h8.77a2 2 0 0 0 1.62-.91l3.41-5.46a1 1 0 0 0-.17-1.48L16.5 12.35"/><path d="M22 10v.96"/><path d="M12 2v6"/><path d="m16.5 12.35 3.32 1.9a1 1 0 0 0 .17 1.48"/></svg>',
+            Briefcase: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V19a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M6 3v4"/><path d="M18 3v4"/></svg>',
+            FileText: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 12H7"/><path d="M17 16H7"/><path d="M17 14H7"/></svg>',
+            Phone: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 17.5 17.5 0 0 0 .7 2.81c.11.23.06.46-.05.68L4.17 10a20.2 20.2 0 0 0 11.83 11.83l2.87-2.81c.22-.11.45-.16.68-.05a17.5 17.5 0 0 0 2.81.7c.36.08.7.4.7.75v3z"/></svg>',
+            MapPin: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M12 18s-4 4-4-4a4 4 0 0 1 8 0c0 4-4 4-4 4z"/><circle cx="12" cy="10" r="3"/></svg>',
+            Mail: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.99 1.99 0 0 1-2.06 0L2 7"/></svg>',
+            ExternalLink: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 16v-3"/><path d="M17 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12"/></svg>',
+            Linkedin: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>',
+            Github: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-2-3.75c3.5-.42 7.15-2.5 7.15-7.5 0-2.2-1.2-3.8-2.8-4.5.3-.9.45-1.9-.3-2.6-.6-.5-1.5-.7-2.3-.5A7.6 7.6 0 0 0 12 5c-1.3 0-2.7.2-3.9.6-.8-.2-1.7 0-2.3.5-.7.7-.6 1.7-.3 2.6-1.6.7-2.8 2.3-2.8 4.5 0 5 3.65 7.08 7.15 7.5-.5.4-.9 1-1.1 2v4"/></svg>',
+            Terminal: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-terminal"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="17" y2="17"/></svg>',
+            Cpu: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 8h8v8H8z"/><path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/><path d="M16 16h2v2"/><path d="M16 6h2v-2"/><path d="M6 16h-2v-2"/><path d="M6 6h-2v-2"/></svg>',
+            Globe: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10z"/><path d="M2 12h20"/></svg>',
+            Shield: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>',
+            Wifi: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wifi"><path d="M12 20.01V20"/><path d="M7 17c.75-2.05 1.76-3.95 3-5m4 0c1.24 1.05 2.25 2.95 3 5"/><path d="M2 12c.98-2.6 2.4-5.08 4-7"/><path d="M22 12c-.98-2.6-2.4-5.08-4-7"/></svg>',
+            Award: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-award"><circle cx="12" cy="8" r="5"/><path d="M15.47 12.33 19 14l-2.11 4.39a2 2 0 0 1-1.89 1.11H8.88a2 2 0 0 1-1.89-1.11L5 14l3.53-1.67"/><path d="M12 13v9"/></svg>',
+            ChevronRight: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>',
+            Star: '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
+        };
+        
+        // --- STATE MANAGEMENT ---
+        let activeTab = 'personal-info';
+        let visibleTab = 'personal-info';
+        let isFadingIn = true;
+        let searchQuery = '';
+        let debouncedSearch = '';
+        let searchTimeout = null;
+        let transitionTimeout = null;
+        
+        // --- UTILITY FUNCTIONS ---
+
+        /** Generates HTML string with highlighted text. */
+        function getHighlightedText(text, highlight) {
+            if (!highlight || highlight.length < 2) {
+                return text;
+            }
+
+            const regex = new RegExp(`(${highlight})`, 'gi');
+            
+            return text.replace(regex, (match) => 
+                `<span class="bg-yellow-500/50 text-white font-bold rounded-sm px-[1px]">${match}</span>`
+            );
+        }
+
+        /** Generates HTML string for the GlassCard container. */
+        function GlassCard(content, className = '', noHover = false, onClickHandlerName = '') {
+            const hoverClass = noHover ? '' : 'hover:border-accent/50 hover:shadow-accent-glow';
+            const clickAttr = onClickHandlerName ? `onclick="${onClickHandlerName}"` : '';
+            const cursorClass = onClickHandlerName ? 'cursor-pointer' : '';
+
+            return `
+                <div ${clickAttr}
+                    class="
+                        relative overflow-hidden rounded-2xl bg-[#121212]/80 backdrop-blur-md
+                        border border-white/10 transition-all duration-300 group
+                        ${hoverClass} ${className} ${cursorClass}
+                    "
+                >
+                    <!-- Background Gradient Effect -->
+                    <div class="absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-[0.03]"></div>
+                    <div class="relative z-10 h-full">
+                        ${content}
+                    </div>
+                </div>
+            `;
+        }
+
+        /** Generates HTML string for an InfoBlock. */
+        function InfoBlock({ icon, label, value, href }) {
+            const highlightedValue = getHighlightedText(value, debouncedSearch);
+            const content = href ? 
+                `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-white hover:text-accent truncate block transition-colors">
+                    ${highlightedValue}
+                </a>` :
+                `<p class="text-sm font-medium text-white truncate">${highlightedValue}</p>`;
+
+            return `
+                <div class="flex items-center space-x-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                    <div class="p-2 bg-accent/10 rounded-lg text-accent w-9 h-9 flex items-center justify-center">
+                        ${icon}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-xs text-gray-400 font-mono mb-0.5">${label}</p>
+                        ${content}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // --- RENDERING FUNCTIONS ---
+
+        function renderPersonalInfo() {
+            const summaryContent = `
+                <div class="p-8 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="flex items-center space-x-2 mb-6 text-accent">
+                            ${ICONS.Terminal}
+                            <span class="font-mono text-sm tracking-widest">ABOUT_ME.MD</span>
+                        </div>
+                        <p class="text-lg text-gray-300 leading-relaxed">
+                            ${getHighlightedText(PROFILE_DATA.personal.summary, debouncedSearch)}
+                        </p>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-2">
+                        ${['Python', 'SIEM', 'GCP', 'AWS', 'Network Security', 'DevOps'].map(skill => `
+                            <span class="px-3 py-1 rounded-md bg-white/5 border border-white/5 text-xs font-mono text-gray-400">
+                                ${skill}
+                            </span>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            const photoCardContent = `
+                <img 
+                    src="https://github.com/urstrulysaida/urstrulysaida/blob/main/Github%20Profile.jpeg?raw=true"
+                    class="w-full h-full object-cover absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-500"
+                    alt="Profile"
+                    onerror="this.src='https://placehold.co/400x400/121212/333333?text=NO+IMAGE';"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6 w-full z-10">
+                    <p class="text-accent font-mono text-xs mb-1">STATUS: ONLINE</p>
+                    <h3 class="text-xl font-bold text-white">Full Stack Cyber</h3>
+                </div>
+            `;
+            
+            const quickConnectLinkedin = GlassCard(`
+                <div class="p-5 flex flex-col justify-center items-center text-center">
+                    ${ICONS.Linkedin.replace(/width="32" height="32"/g, 'width="32" height="32"').replace(/lucide-/g, 'text-white group-hover:text-accent')}
+                    <span class="font-bold text-white">LinkedIn</span>
+                    <span class="text-xs text-gray-400 group-hover:text-gray-200">Connect professionally</span>
+                </div>
+            `, '', false, "window.open('https://www.linkedin.com/in/shaiksaidavali/')");
+
+            const quickConnectGithub = GlassCard(`
+                <div class="p-5 flex flex-col justify-center items-center text-center">
+                    ${ICONS.Github.replace(/width="32" height="32"/g, 'width="32" height="32"').replace(/lucide-/g, 'text-white group-hover:text-white')}
+                    <span class="font-bold text-white">GitHub</span>
+                    <span class="text-xs text-gray-400 group-hover:text-gray-200">Check my repos</span>
+                </div>
+            `, '', false, "window.open('https://github.com/urstrulysaida')");
+
+
+            const detailsGridContent = `
+                <div class="p-6">
+                    <div class="flex items-center space-x-2 mb-6 text-gray-500">
+                        ${ICONS.Cpu.replace(/width="24" height="24"/g, 'width="20" height="20"')}
+                        <span class="font-mono text-sm tracking-widest">SYSTEM_INFO</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        ${InfoBlock({ icon: ICONS.Mail.replace(/width="24" height="24"/g, 'width="18" height="18"'), label: "EMAIL", value: PROFILE_DATA.personal.email, href: `mailto:${PROFILE_DATA.personal.email}` })}
+                        ${InfoBlock({ icon: ICONS.Phone.replace(/width="24" height="24"/g, 'width="18" height="18"'), label: "PHONE", value: PROFILE_DATA.personal.contact })}
+                        ${InfoBlock({ icon: ICONS.MapPin.replace(/width="24" height="24"/g, 'width="18" height="18"'), label: "LOCATION", value: `${PROFILE_DATA.personal.city}, India` })}
+                        ${InfoBlock({ icon: ICONS.User.replace(/width="24" height="24"/g, 'width="18" height="18"'), label: "GENDER", value: PROFILE_DATA.personal.gender })}
+                        ${InfoBlock({ icon: ICONS.Globe.replace(/width="24" height="24"/g, 'width="18" height="18"'), label: "LANGUAGES", value: "English, Telugu, Hindi" })}
+                        ${InfoBlock({ icon: ICONS.FileText.replace(/width="24" height="24"/g, 'width="18" height="18"'), label: "RESUME", value: "View Document", href: "https://docs.google.com/document/d/1UBfhBcEI_hzWj1KOlvlD4vjbkhmVV1ZNFayQrkroXZA/edit?usp=sharing" })}
+                    </div>
+                </div>
+            `;
+            
+            const addressCardContent = `
+                <div class="p-6 flex flex-col justify-center items-center h-full">
+                    ${ICONS.MapPin.replace(/width="24" height="24"/g, 'width="40" height="40"').replace('stroke="currentColor"', 'stroke="currentColor"').replace('lucide-map-pin', 'text-accent mb-4 animate-bounce-slow')}
+                    <p class="text-center text-sm text-gray-400 font-mono">
+                        ${getHighlightedText(PROFILE_DATA.personal.address, debouncedSearch)}
+                    </p>
+                </div>
+            `;
+
+            return `
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    ${GlassCard(summaryContent, 'md:col-span-2 lg:col-span-2 min-h-[300px]', true)}
+                    ${GlassCard(photoCardContent, 'md:col-span-1 lg:col-span-1 min-h-[300px] overflow-hidden', true)}
+                    <div class="md:col-span-1 lg:col-span-1 grid grid-cols-1 gap-4">
+                        ${quickConnectLinkedin}
+                        ${quickConnectGithub}
+                    </div>
+                    ${GlassCard(detailsGridContent, 'md:col-span-3 lg:col-span-3', true)}
+                    ${GlassCard(addressCardContent, 'md:col-span-1 lg:col-span-1', true)}
+                </div>
+            `;
+        }
+
+        function renderEducation() {
+            const reversedEducation = PROFILE_DATA.education.slice().reverse();
+            
+            const cards = reversedEducation.map((edu, index) => {
+                const isLatest = index === 0;
+                const cardClasses = isLatest ? 'md:col-span-2 min-h-[320px]' : 'md:col-span-1 min-h-[260px]';
+                const tagClasses = isLatest ? 'bg-accent/20 text-accent border-accent/20' : 'bg-white/5 text-gray-400 border-white/10';
+                const icon = isLatest ? ICONS.Star.replace('fill="none"', 'fill="currentColor"').replace(/width="12" height="12"/g, 'width="12" height="12"') : ICONS.GraduationCap.replace(/width="24" height="24"/g, 'width="12" height="12"');
+                const tagText = isLatest ? 'LATEST QUALIFICATION' : 'COMPLETED';
+                const titleSize = isLatest ? 'text-3xl md:text-4xl' : 'text-xl md:text-2xl';
+                const detailGridCols = isLatest ? 'grid-cols-2 md:grid-cols-4' : 'grid-cols-2';
+
+                const detailsHtml = edu.details.map((detail, idx) => {
+                    const detailValue = getHighlightedText(detail.value, debouncedSearch);
+                    const label = getHighlightedText(detail.label, debouncedSearch);
+
+                    const valueContent = detail.isLink ? 
+                        `<a href="${detail.linkUrl}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-white transition-colors text-xs md:text-sm font-bold flex items-center">
+                            ${detailValue} ${ICONS.ExternalLink.replace(/width="16" height="16"/g, 'width="12" height="12"').replace('lucide-external-link', 'ml-1')}
+                        </a>` :
+                        `<p class="text-white text-xs md:text-sm font-semibold truncate">${detailValue}</p>`;
+                        
+                    return `
+                        <div class="bg-white/5 rounded-lg p-3 backdrop-blur-sm border border-white/5 hover:bg-white/10 transition-colors">
+                            <p class="text-[10px] text-gray-500 font-mono uppercase tracking-wider mb-1">
+                                ${label}
+                            </p>
+                            ${valueContent}
+                        </div>
+                    `;
+                }).join('');
+
+                const content = `
+                    <!-- Background Image Layer -->
+                    <div class="absolute inset-0 z-0">
+                        <img 
+                          src="${edu.bgImage}" 
+                          alt="${edu.title}" 
+                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-30 group-hover:opacity-20 blur-[2px] group-hover:blur-none" 
+                          onerror="this.src='https://placehold.co/800x400/121212/333333?text=INSTITUTE+IMAGE';"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/90 to-[#121212]/40"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/60 to-transparent"></div>
+                    </div>
+
+                    <!-- Content Layer -->
+                    <div class="relative z-10 p-6 md:p-8 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-auto">
+                           <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono border backdrop-blur-md ${tagClasses}">
+                             ${icon.replace(/lucide-star/g, 'mr-1 lucide-star')}
+                             ${tagText}
+                           </span>
+                        </div>
+                        
+                        <div class="mt-8">
+                          <h3 class="font-bold text-white mb-2 leading-tight ${titleSize}">
+                            ${getHighlightedText(edu.title, debouncedSearch)}
+                          </h3>
+                          
+                          <!-- Animated line -->
+                          <div class="w-12 h-1 bg-accent/80 mb-6 group-hover:w-24 transition-all duration-500 rounded-full"></div>
+
+                          <!-- Details Grid -->
+                          <div class="grid ${detailGridCols} gap-3">
+                            ${detailsHtml}
+                          </div>
+                        </div>
+                    </div>
+                `;
+                return GlassCard(content, cardClasses, false);
+            }).join('');
+
+            return `<div class="grid grid-cols-1 md:grid-cols-2 gap-6">${cards}</div>`;
+        }
+
+        function renderCareerLinks() {
+            // Certifications
+            const certsHtml = PROFILE_DATA.career.certifications.map(cert => {
+                const shieldIcon = ICONS.Shield.replace(/width="24" height="24"/g, 'width="32" height="32"').replace('lucide-shield', `${cert.colorClass} opacity-80`);
+                const externalLinkIcon = ICONS.ExternalLink.replace(/width="16" height="16"/g, 'width="18" height="18"').replace('lucide-external-link', '');
+
+                const content = `
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-4">
+                           ${shieldIcon}
+                           <a href="${cert.linkUrl}" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-white transition-colors">
+                             ${externalLinkIcon}
+                           </a>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">
+                          ${getHighlightedText(cert.title, debouncedSearch)}
+                        </h3>
+                        <span class="inline-block px-2 py-1 bg-white/5 rounded text-[10px] font-mono text-gray-400 mb-4 border border-white/5 w-fit">
+                          ${cert.type}
+                        </span>
+                        
+                        <div class="mt-auto space-y-3 pt-4 border-t border-white/5">
+                          <div>
+                            <p class="text-xs text-gray-500 font-mono mb-1">SKILLS ACQUIRED</p>
+                            <p class="text-sm text-gray-300">
+                              ${getHighlightedText(cert.skills, debouncedSearch)}
+                            </p>
+                          </div>
+                        </div>
+                    </div>
+                `;
+                return GlassCard(content, 'hover:border-accent', false);
+            }).join('');
+
+            const certsSection = `
+                <div>
+                  <div class="flex items-center space-x-4 mb-6">
+                    <div class="p-2 bg-accent/10 rounded-lg text-accent">
+                      ${ICONS.Award.replace(/width="24" height="24"/g, 'width="24" height="24"')}
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Certifications & Licenses</h2>
+                    <div class="h-px bg-white/10 flex-1"></div>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${certsHtml}
+                  </div>
+                </div>
+            `;
+
+            // Internships
+            const internshipsHtml = PROFILE_DATA.career.internships.map(intern => {
+                const wifiIcon = ICONS.Wifi.replace(/width="24" height="24"/g, 'width="32" height="32"').replace('lucide-wifi', `${intern.colorClass} opacity-80`);
+                const chevronIcon = ICONS.ChevronRight.replace(/width="14" height="14"/g, 'width="14" height="14"').replace('lucide-chevron-right', 'ml-1 group-hover:translate-x-1 transition-transform');
+
+                const content = `
+                    <div class="p-6 flex flex-col h-full">
+                        <div class="flex justify-between items-start mb-4">
+                           ${wifiIcon}
+                           <span class="text-xs font-mono text-gray-500">${intern.type.split(' ')[0]}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">
+                          ${getHighlightedText(intern.title, debouncedSearch)}
+                        </h3>
+                        
+                        <p class="text-sm text-gray-400 mb-4 flex-1">
+                           ${getHighlightedText(intern.focus, debouncedSearch)}
+                        </p>
+                        
+                        <a href="${intern.linkUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-medium text-white hover:text-accent transition-colors mt-auto group">
+                          View Documentation ${chevronIcon}
+                        </a>
+                    </div>
+                `;
+                return GlassCard(content, '', false);
+            }).join('');
+
+            const internshipsSection = `
+                <div>
+                  <div class="flex items-center space-x-4 mb-6">
+                    <div class="p-2 bg-blue-500/10 rounded-lg text-blue-500">
+                      ${ICONS.Briefcase.replace(/width="24" height="24"/g, 'width="24" height="24"')}
+                    </div>
+                    <h2 class="text-2xl font-bold text-white">Internship Experience</h2>
+                    <div class="h-px bg-white/10 flex-1"></div>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${internshipsHtml}
+                  </div>
+                </div>
+            `;
+
+            return `<div class="space-y-12">${certsSection}${internshipsSection}</div>`;
+        }
+
+        // --- CORE RENDER LOOP ---
+        function render() {
+            const contentArea = document.getElementById('content-area');
+            const navDock = document.getElementById('nav-dock');
+
+            // 1. Handle Content Transition
+            if (activeTab !== visibleTab) {
+                // Fade out before changing content
+                contentArea.classList.remove('opacity-100', 'translate-y-0');
+                contentArea.classList.add('opacity-0', 'translate-y-4');
+                
+                if (transitionTimeout) clearTimeout(transitionTimeout);
+                transitionTimeout = setTimeout(() => {
+                    visibleTab = activeTab;
+                    render(); // Re-render immediately with new content
+                }, 200);
+                return; // Stop current render to wait for transition
+            } else {
+                // Content is ready to be rendered/faded in
+                contentArea.classList.add('opacity-100', 'translate-y-0');
+                contentArea.classList.remove('opacity-0', 'translate-y-4');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // 2. Render Main Content
+            let contentHtml = '';
+            switch (visibleTab) {
+                case 'personal-info':
+                    contentHtml = renderPersonalInfo();
+                    break;
+                case 'education':
+                    contentHtml = renderEducation();
+                    break;
+                case 'career-links':
+                    contentHtml = renderCareerLinks();
+                    break;
+                default:
+                    contentHtml = 'Tab content not found.';
+            }
+            contentArea.innerHTML = contentHtml;
+            
+            // 3. Render Navigation Dock
+            const tabs = [
+                { id: 'personal-info', label: 'Profile', icon: ICONS.User },
+                { id: 'education', label: 'Education', icon: ICONS.GraduationCap },
+                { id: 'career-links', label: 'Career', icon: ICONS.Briefcase }
+            ];
+
+            navDock.innerHTML = tabs.map(tab => {
+                const isActive = activeTab === tab.id;
+                return `
+                    <button
+                        data-tab-id="${tab.id}"
+                        class="
+                            relative group p-3 rounded-xl transition-all duration-300 ease-out
+                            ${isActive ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white hover:bg-white/5'}
+                        "
+                        onclick="switchTab('${tab.id}')"
+                    >
+                        ${tab.icon}
+                        <!-- Tooltip -->
+                        <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[#1a1a1a] text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-white/10 font-mono">
+                            ${tab.label}
+                        </span>
+                        <!-- Active Indicator Dot -->
+                        ${isActive ? '<span class="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-accent rounded-full animate-pulse-slow"></span>' : ''}
+                    </button>
+                `;
+            }).join('');
+        }
+        
+        // --- EVENT HANDLERS ---
+        
+        function switchTab(tabId) {
+            if (activeTab === tabId) return;
+            activeTab = tabId;
+            render();
+        }
+
+        function handleSearchChange(event) {
+            searchQuery = event.target.value;
+            
+            if (searchTimeout) clearTimeout(searchTimeout);
+            
+            // Debounce search input
+            searchTimeout = setTimeout(() => {
+                debouncedSearch = searchQuery.trim();
+                
+                // --- Search Logic (Simplified from React version) ---
+                if (debouncedSearch) {
+                    const term = debouncedSearch.toLowerCase();
+                    const checkMatchInString = (str) => str && str.toLowerCase().includes(term);
+
+                    // Helper to check if search term matches any string value in a nested object/array
+                    const checkMatchInObject = (data) => {
+                        if (typeof data === 'string') return checkMatchInString(data);
+                        if (Array.isArray(data)) return data.some(checkMatchInObject);
+                        if (typeof data === 'object' && data !== null) {
+                            return Object.values(data).some(checkMatchInObject);
+                        }
+                        return false;
+                    };
+
+                    // Check and switch tabs if a match is found elsewhere
+                    if (checkMatchInObject(PROFILE_DATA.personal) && activeTab !== 'personal-info') {
+                        switchTab('personal-info');
+                    } else if (checkMatchInObject(PROFILE_DATA.education) && activeTab !== 'education') {
+                        switchTab('education');
+                    } else if (checkMatchInObject(PROFILE_DATA.career) && activeTab !== 'career-links') {
+                        switchTab('career-links');
+                    }
+                }
+                
+                // Re-render to update highlighting and/or tab
+                render();
+            }, 300);
+        }
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('search-input').addEventListener('input', handleSearchChange);
+            render(); // Initial render
+        });
+    </script>
+</body>
+</html>
